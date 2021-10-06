@@ -1,0 +1,498 @@
+@charset "UTF-8";
+
+/* 共通部分 */
+*,*::before*::after {
+    box-sizing: border-box;
+}
+
+* {
+    text-decoration:none;
+    list-style: none;
+    margin: 0;
+}
+
+/* モバイルファーストでcss作成 */
+/* スマホ表示 */
+header{
+    background-color:rgb(72, 109, 158);
+    width: 100%;
+    height:70px; 
+    position: fixed;
+    display:flex;
+    top:0;
+    left:0;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+header h1 {
+    margin-top:15px;
+    margin-left: 4%;
+    font-size:25px;
+    color: aliceblue;
+    font-family: 'Kiwi Maru', serif;
+}
+
+.menuicon {
+    display:block;
+    height: 70px;
+    width: 70px;
+    position: relative;
+    z-index: 4;
+}
+
+.menuicon div {
+    height: 1px;
+    width:60%;
+    background-color: aliceblue;
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition:.05s;
+}
+
+.menuicon div:nth-of-type(1){
+    transform: translate(-50%,-15px);
+}
+
+.menuicon div:nth-of-type(3){
+    transform: translate(-50%,15px);
+
+}
+
+.menuicon.active div:nth-of-type(1){
+    transform: rotate(45deg) translate(-50%,0);
+    transform-origin:0% 50% ;
+
+}
+
+.menuicon.active div:nth-of-type(2){
+    opacity:0;
+}
+
+.menuicon.active div:nth-of-type(3){
+    transform: rotate(-45deg) translate(-50%,0);
+    transform-origin:0% 50% ;
+
+}
+
+nav {
+    opacity:0;
+    visibility: hidden;
+    transition: .3s;
+    position: fixed;
+    top:0;
+    right:0;
+    background-color: rgba(240, 248, 255, 0.8);
+    z-index: 3;
+    width: 108px;
+    height: 300px;    
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+nav ul li {
+    margin-right:30px;
+}
+
+nav ul li:nth-of-type(1) {
+    padding-top:30px;
+}
+
+nav ul li:not(:first-of-type) {
+    margin-top:25px;
+}
+
+nav a{
+    color: black;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+nav.active {
+    opacity:1;
+    visibility:visible;
+
+}
+
+.header-menu a {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* メインコンテンツの内容 */
+main {
+    margin-top:70px;
+}
+
+.contents {
+    padding-left:0;
+}
+
+/* 服の内容 */
+
+.fashion {
+    background-image:url("portfolio_fashion.JPG") ;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    background-size: cover;
+    background-position: 54% 50%;
+}
+
+.fashion::before {
+    content: '';
+    position:absolute;
+    top: 0;
+    right: 0;
+    bottom:0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.fashion-logo {
+    color:rgb(221, 220, 220);
+    position: absolute;
+    top: 55%;
+    left:5%;
+    font-size: .9rem;
+
+}
+
+.fashion h2 {
+    font-family: 'Prata', serif;
+}
+
+.fashion p {
+    font-family: 'Kiwi Maru', serif;
+
+}
+
+/* 美術館の内容 */
+
+.art-museum {
+    background-image:url("portfolio_museum.JPG") ;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    background-size: cover;
+    background-position: 54% 50%;
+}
+
+.art-museum::before {
+    content: '';
+    position:absolute;
+    top: 0;
+    right: 0;
+    bottom:0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.museum-logo {
+    color:rgb(221, 220, 220);
+    position: absolute;
+    top: 55%;
+    right:5%;
+    font-size: .9rem;
+
+}
+
+.museum-logo h2 {
+    font-family: 'Prata', serif;
+}
+
+.museum-logo p {
+    font-family: 'Kiwi Maru', serif;
+
+}
+
+/* サッカーの内容 */
+.soccer {
+    background-image:url("portfoliio_soccer.JPG") ;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    background-size: cover;
+    background-position: 55% 50%;
+}
+
+.soccer::before {
+    content: '';
+    position:absolute;
+    top: 0;
+    right: 0;
+    bottom:0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.soccer-logo {
+    color:rgb(221, 220, 220);
+    position: absolute;
+    top: 54%;
+    left:5%;
+    font-size: .9rem;
+    
+
+}
+
+.soccer-logo h2 {
+    font-family: 'Prata', serif;
+}
+
+.soccer-logo p {
+    font-family: 'Kiwi Maru', serif;
+}
+
+/* 文字のアニメーション */
+.fashion-logo,
+.museum-logo,
+.soccer-logo {
+    opacity:0;
+    transform: translateY(30px);
+    transition: 2s;
+}
+
+.contents li.show .fashion-logo,
+.contents li.show .museum-logo,
+.contents li.show .soccer-logo {
+    transform: none;
+    opacity: 1;
+}
+
+
+
+
+/* タブレット表示 */
+@media (min-width:768px){
+    
+    /* ヘッダーメニュー */
+    header {
+        height: 80px;
+    }
+
+    .header1 h1{
+        font-size:2rem;
+    }
+
+    .menuicon {
+        height: 80px;
+        width: 80px;
+    }
+
+    nav{
+        width:200px;
+        height: 450px;
+    }
+
+    nav a {
+        font-size: 2rem;
+    }
+
+    nav ul li:not(:first-of-type) {
+        margin-top:50px;
+    }
+
+    /* メインコンテンツ */
+    .fashion{
+        margin-top: 80px;
+    }
+
+    .fashion,
+    .art-museum,
+    .soccer {
+        min-height:calc(100vh - 80px);
+    }
+
+
+    .fashion-logo,
+    .museum-logo,
+    .soccer-logo {
+        font-size: 1.75rem;
+    }
+}
+
+@media (min-width:800px) {
+    header {
+        width: 100vw;
+        height: 70px;
+    }
+
+    .title h1 {
+        font-size:50px;
+    }
+
+    .sub h1 {
+        margin-top:0.2rem;
+    }
+
+    .insta {
+        margin: 1px auto;
+    }
+
+    .insta img{
+        height: 40px;
+        width: 40px;
+    } 
+
+    /* メインコンテンツ */
+    .fashion {
+        margin-top: 70px;
+    }
+    .fashion,
+    .art-museum,
+    .soccer {
+        min-height:calc(100vh - 70px);
+    }
+
+    .fashion-logo,
+    .museum-logo,
+    .soccer-logo {
+        font-size: .9rem;
+    }
+
+    
+}
+
+/* タブレット用 */
+@media (min-width:850px){
+
+    header {
+        width:100%;
+        height: 80px;
+    }
+
+    .menuicon {
+        height: 80px;
+        width: 80px;
+    }
+
+    nav{
+        width:200px;
+        height: 450px;
+    }
+
+    nav a {
+        font-size: 2rem;
+    }
+
+    nav ul li:not(:first-of-type) {
+        margin-top:50px;
+    }
+
+    /* メインコンテンツ */
+    .fashion {
+        margin-top:80px;
+    }
+
+    .fashion,
+    .art-museum,
+    .soccer {
+        min-height:calc(100vh - 80px);
+    }
+
+    .fashion-logo,
+    .museum-logo,
+    .soccer-logo {
+        font-size: 1.75rem;
+    }
+}
+
+
+@media (min-width:1200px){
+
+    header{
+        height:100px;
+        width: 100%;
+
+    }
+
+    .header1 h1{
+        font-size:2.5rem;
+    }
+
+    .menuicon {
+        display:none;
+    }
+
+    nav {
+        opacity:1;
+        visibility: visible;
+        transition: .3s;
+        position: fixed;
+        top:0;
+        right:0;
+        background-color:rgba(72, 109, 158,0.95) ;
+        z-index: 3;
+        width: auto;
+        height: 100px;            
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction:row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    nav ul li {
+        margin-left: 30px;
+    }
+
+    nav ul li:nth-of-type(1) {
+        padding-top:0;
+    }
+
+    nav ul li:not(:first-of-type) {
+        margin-top:0;
+    }
+ 
+
+    .header-menu a {
+        color:#eddcbc;
+        font-weight:bold;
+        text-decoration: none;
+        background:linear-gradient(rgb(240, 212, 175),rgb(240, 212, 175)) left bottom /100% 1px no-repeat;
+        transition: background-size .4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    
+    .header-menu a:hover {
+        color:rgb(240, 212, 175);
+        background-position: right bottom;
+        background-size: 0 1px;
+    }
+
+    /* メインコンテンツ */
+    .fashion {
+        margin-top: 100px;
+    }
+
+    .fashion,
+    .art-museum,
+    .soccer {
+        min-height:calc(100vh - 100px);
+    }
+
+    .fashion::before,
+    .art-museum::before,
+    .soccer::before {
+        display: none;
+    }
+
+    .fashion-logo,
+    .museum-logo,
+    .soccer-logo {
+        color:black;
+
+    }
+
+
+}
