@@ -43,6 +43,11 @@ header h1 {
     z-index: 4;
 }
 
+nav {
+    margin-right: calc(env(safe-area-inset-right) + 3rem);
+    margin-left: calc(env(safe-area-inset-left) + 1rem);
+}
+
 .menuicon div {
     height: 1px;
     width:60%;
